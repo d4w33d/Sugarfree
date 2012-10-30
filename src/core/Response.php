@@ -16,9 +16,10 @@ class Response
         $this->setCharset(self::DEFAULT_CHARSET);
     }
 
-    public function render($filename, $vars = array())
+    public function render($filename, $vars = array(), $layout = null)
     {
         $tpl = new Template();
+        $tpl->setLayout($layout);
         $this->setOutput($tpl->render($filename, $vars));
         $this->setContentType('text/html');
         return $this;

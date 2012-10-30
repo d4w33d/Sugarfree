@@ -18,6 +18,7 @@ class Template
         self::$globalVars = $vars;
     }
 
+    private $layout;
     private $filename;
     private $vars = array();
 
@@ -27,6 +28,11 @@ class Template
         {
             $this->filename = $filename;
         }
+    }
+
+    public function setLayout($layout)
+    {
+        $this->layout = $layout;
     }
 
     public function setVars($vars)
@@ -41,11 +47,24 @@ class Template
         {
             $$key = $value;
         }
+
         ob_start();
         include (self::$templatesDirectory ?: '.') . DS . ($filename ?: $this->filename);
         $output = ob_get_contents();
         ob_end_clean();
+
+        if ($this->layout && $filename !== $this->layout)
+        {
+            $output = $this->render($this->layout, array_merge($vars, array(
+                'content_for_layout' => $output
+            )));
+        }
         return $output;
+    }
+
+    public function url($url)
+    {
+        return BASE_URL . '/' . ltrim($url, '/');
     }
 
 }
