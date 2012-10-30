@@ -1,0 +1,10 @@
+
+<IfModule rewrite_module>
+    RewriteEngine On
+    RewriteRule (js|css)/((.+)\.(js|css))$ code/views/$1/$2
+    RewriteRule (images)/((.+)\.(png|jpg|gif))$ data/images/$2
+    RewriteCond %{SCRIPT_FILENAME} !-f
+    RewriteCond %{SCRIPT_FILENAME} !-d
+    RewriteCond %{SCRIPT_FILENAME} !-l
+    RewriteRule ^(.*)$ index.php?__path=$1 [QSA]
+</IfModule>
