@@ -2,7 +2,7 @@
 
 namespace Core;
 
-class Request extends \ArrayObject
+class Request extends ArrayObject
 {
 
     const PATH_KEY = '__path';

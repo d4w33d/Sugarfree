@@ -13,7 +13,7 @@ class Template
         self::$templatesDirectory = $directory;
     }
 
-    public static function setGlobalVars($vars)
+    public static function setGlobalVars(array $vars)
     {
         self::$globalVars = $vars;
     }
@@ -35,12 +35,12 @@ class Template
         $this->layout = $layout;
     }
 
-    public function setVars($vars)
+    public function setVars(array $vars)
     {
         $this->vars = $vars;
     }
 
-    public function render($filename = null, $vars = array())
+    public function render($filename = null, array $vars = array())
     {
         $vars = array_merge(self::$globalVars, $this->vars, $vars);
         foreach ($vars as $key => $value)

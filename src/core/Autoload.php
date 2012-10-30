@@ -5,7 +5,7 @@ namespace Core;
 class Autoload
 {
 
-    public static function initialize($directories)
+    public static function initialize(array $directories)
     {
         $path = '';
         foreach ($directories as $dir)

@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use Closure;
+
 class Controller
 {
 
@@ -30,7 +32,7 @@ class Controller
         }
     }
 
-    public function dispatch($request)
+    public function dispatch(Request $request)
     {
         foreach ($this->handlers as $handler)
         {
@@ -42,7 +44,7 @@ class Controller
         }
     }
 
-    public function attachHandler($pattern, \Closure $closure)
+    public function attachHandler($pattern, Closure $closure)
     {
         $this->handlers[] = new ControllerHandler($pattern, $closure);
     }
@@ -60,7 +62,7 @@ class ControllerHandler
     public $pattern;
     public $closure;
 
-    public function __construct($pattern, \Closure $closure)
+    public function __construct($pattern, Closure $closure)
     {
         $this->pattern = $pattern;
         $this->closure = $closure;

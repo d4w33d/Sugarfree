@@ -16,7 +16,7 @@ class Response
         $this->setCharset(self::DEFAULT_CHARSET);
     }
 
-    public function render($filename, $vars = array(), $layout = null)
+    public function render($filename, array $vars = array(), $layout = null)
     {
         $tpl = new Template();
         $tpl->setLayout($layout);
@@ -25,7 +25,7 @@ class Response
         return $this;
     }
 
-    public function json($data)
+    public function json(array $data)
     {
         $this->setOutput(json_encode($data));
         $this->setContentType('text/plain');
