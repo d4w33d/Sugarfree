@@ -2,6 +2,7 @@
 <IfModule rewrite_module>
     RewriteEngine On
     RewriteRule (js|css)/((.+)\.[a-z]+)$ code/views/$1/$2
+    RewriteRule (data)/((.+)\.[a-z]+)$ data/$2
     RewriteRule (images)/((.+)\.[a-z]+)$ data/images/$2
     RewriteCond %{SCRIPT_FILENAME} !-f
     RewriteCond %{SCRIPT_FILENAME} !-d

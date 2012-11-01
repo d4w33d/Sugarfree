@@ -62,7 +62,7 @@ class Template
         return $output;
     }
 
-    public function url($url)
+    public function url($url = '')
     {
         return BASE_URL . '/' . ltrim($url, '/');
     }

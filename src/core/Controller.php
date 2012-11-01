@@ -2,7 +2,8 @@
 
 namespace Core;
 
-use Closure;
+use Closure,
+    DirectoryIterator;
 
 class Controller
 {
@@ -20,7 +21,7 @@ class Controller
 
     public function loadHandlers($directory)
     {
-        $it = new \DirectoryIterator($directory);
+        $it = new DirectoryIterator($directory);
         foreach ($it as $f)
         {
             $path = $f->getPath() . DS . $f;

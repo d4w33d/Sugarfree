@@ -18,5 +18,6 @@ Core\Autoload::initialize(array(
     CODE_DIR
 ));
 
+Core\Session::initialize();
 Core\Template::setTemplatesDirectory(CODE_DIR . DS . 'views' . DS . 'templates');
 Core\Controller::loadAndDispatch(CODE_DIR . DS . 'handlers');
