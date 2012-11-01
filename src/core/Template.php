@@ -64,7 +64,9 @@ class Template
 
     public function url($url = '')
     {
-        return BASE_URL . '/' . ltrim($url, '/');
+        return BASE_URL
+            . (BASE_URL !== '/' ? '/' : '')
+            . ltrim($url, '/');
     }
 
 }
