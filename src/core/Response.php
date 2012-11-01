@@ -2,6 +2,8 @@
 
 namespace Core;
 
+use Closure;
+
 class Response
 {
 
@@ -32,9 +34,31 @@ class Response
         return $this;
     }
 
+    public function redirect($url)
+    {
+        $self = $this;
+        $this->setOutput(function() use ($self, $url)
+        {
+            if (strpos($url, '://') === false)
+            {
+                $url = BASE_URL
+                    . (BASE_URL !== '/' ? '/' : '')
+                    . ltrim($url, '/');
+            }
+            $self->header('Location', $url);
+        });
+        return $this;
+    }
+
     public function output()
     {
-        $this->header('Content-type', $contentType . '; charset=' . $charset);
+        $output = $this->getOutput();
+        if ($output instanceof Closure)
+        {
+            $output();
+            return;
+        }
+        $this->header('Content-type', $this->contentType . '; charset=' . $this->charset);
         echo $this->getOutput();
     }
 
