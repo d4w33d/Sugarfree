@@ -40,7 +40,8 @@ class Controller
             list($match, $data) = $handler->compute($request->getUrl());
             if ($match)
             {
-                return $handler->execute($request->merge($data));
+                $request->merge($data);
+                return $handler->execute($request);
             }
         }
     }

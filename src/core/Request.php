@@ -36,12 +36,6 @@ class Request extends ArrayObject
         return $this;
     }
 
-    public function merge($data)
-    {
-        $this->data = array_merge($this->data, $data);
-        return $this;
-    }
-
     public function getUrl()
     {
         return $this->url;

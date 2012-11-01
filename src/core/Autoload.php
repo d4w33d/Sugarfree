@@ -18,7 +18,9 @@ class Autoload
 
     public static function autoload($classname)
     {
-        $filename = str_replace('\\', DS, $classname) . '.php';
+        $filename = ucwords(str_replace('\\', ' ', $classname));
+        $filename = str_replace(' ', DS, $filename) . '.php';
+        $filename = strtolower($filename{0}) . substr($filename, 1);
         require_once $filename;
     }
 
